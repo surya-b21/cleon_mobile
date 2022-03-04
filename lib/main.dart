@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cleon Mobile',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xff2F2E41),
       ),
       home: Dashboard(),
-      onGenerateRoute: Routes.generate,
+      onGenerateRoute: RouteGenerator.generate,
     );
   }
 }

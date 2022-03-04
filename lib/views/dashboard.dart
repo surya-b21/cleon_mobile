@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/utils/logo.dart';
-import 'package:cleon_mobile/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -47,8 +46,9 @@ class Dashboard extends StatelessWidget {
                   style: TextStyle(color: Colors.black, fontSize: 25),
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
+                  Navigator.pushNamed(context, '/signin');
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => SignIn()));
                 },
               ),
             ),
