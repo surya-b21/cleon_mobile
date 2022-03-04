@@ -47,8 +47,6 @@ class Dashboard extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/signin');
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => SignIn()));
                 },
               ),
             ),
@@ -73,7 +71,9 @@ class Dashboard extends StatelessWidget {
                   "Sign Up",
                   style: TextStyle(fontSize: 25),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signup');
+                },
               ),
             )
           ],

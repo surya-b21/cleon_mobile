@@ -1,16 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,9 +21,32 @@ class _SignInState extends State<SignIn> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LogoSims(),
-            SizedBox(height: 25),
+            SizedBox(
+              height: 25,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 40, right: 40),
+              child: TextFormField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    hintText: "Masukkan nama anda",
+                    hintStyle: TextStyle(color: Colors.white30),
+                    labelText: "Nama",
+                    labelStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.people,
+                      color: Colors.white,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff867EBA)))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -48,15 +69,37 @@ class _SignInState extends State<SignIn> {
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
                 obscureText: true,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                    hintText: "Masukkan password",
+                    hintText: "Masukkan password anda",
                     hintStyle: TextStyle(color: Colors.white30),
                     labelText: "Password",
                     labelStyle: TextStyle(color: Colors.white),
                     prefixIcon: Icon(
-                      Icons.vpn_key,
+                      Icons.password,
+                      color: Colors.white,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff867EBA)))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+              child: TextFormField(
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    hintText: "Ketik ulang password anda",
+                    hintStyle: TextStyle(color: Colors.white30),
+                    labelText: "Keting ulang Password",
+                    labelStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.password,
                       color: Colors.white,
                     ),
                     enabledBorder: UnderlineInputBorder(
@@ -68,7 +111,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 40,
             ),
             SizedBox(
               width: 100,
@@ -80,26 +123,25 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
                 child: Text(
-                  'Login',
+                  'Daftar',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
+                onPressed: () {},
               ),
             ),
             SizedBox(
               height: 30,
             ),
             Text(
-              "Belum punya akun ?",
+              "Sudah punya akun ?",
               style: TextStyle(color: Colors.white),
             ),
             TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/signup');
-              },
-              child: Text("Registrasi disini"),
-            )
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signin');
+                },
+                child: Text('Login disini'))
           ],
         ),
       ),

@@ -2,6 +2,7 @@
 
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/signin.dart';
+import 'package:cleon_mobile/views/signup.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -11,6 +12,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Dashboard());
       case '/signin':
         return MaterialPageRoute(builder: (_) => SignIn());
+      case '/signup':
+        return MaterialPageRoute(builder: (_) => SignUp());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
