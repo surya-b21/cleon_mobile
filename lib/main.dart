@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:cleon_mobile/routes.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Dashboard(),
+      home: Dashboard(),
+      onGenerateRoute: Routes.generate,
     );
   }
 }
