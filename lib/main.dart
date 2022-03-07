@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cleon Mobile',
-      theme: ThemeData(
-        primaryColor: Color(0xff2F2E41),
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: Dashboard(),
       onGenerateRoute: RouteGenerator.generate,
     );

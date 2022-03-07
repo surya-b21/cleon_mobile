@@ -80,7 +80,9 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.black, fontSize: 20),

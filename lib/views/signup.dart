@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:flutter/material.dart';
 
