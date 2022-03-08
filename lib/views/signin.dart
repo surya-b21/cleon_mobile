@@ -81,7 +81,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, '/app');
                 },
                 child: Text(
                   'Login',

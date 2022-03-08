@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cleon_mobile/views/app.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home.dart';
 import 'package:cleon_mobile/views/signin.dart';
@@ -17,6 +18,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SignUp());
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
+      case '/app':
+        return MaterialPageRoute(builder: (_) => App());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
