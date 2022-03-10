@@ -2,9 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class TimeBase extends StatelessWidget {
+class TimeBase extends StatefulWidget {
   const TimeBase({Key? key}) : super(key: key);
 
+  @override
+  State<TimeBase> createState() => _TimeBaseState();
+}
+
+class _TimeBaseState extends State<TimeBase> {
   @override
   Widget build(BuildContext context) {
     return ListView(
