@@ -10,22 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List paket = [
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-    "Paket SS 50 GB",
-  ];
+  List paket = List<String>.generate(15, (index) => "Paket SS ${index + 1} GB");
 
   @override
   Widget build(BuildContext context) {

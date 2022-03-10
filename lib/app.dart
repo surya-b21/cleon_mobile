@@ -14,7 +14,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   void onClicked(int index) {
     setState(() {
