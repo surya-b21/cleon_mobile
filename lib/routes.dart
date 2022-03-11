@@ -3,6 +3,7 @@
 import 'package:cleon_mobile/app.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home.dart';
+import 'package:cleon_mobile/views/kontak.dart';
 import 'package:cleon_mobile/views/others.dart';
 import 'package:cleon_mobile/views/shop/shop.dart';
 import 'package:cleon_mobile/views/signin.dart';
@@ -26,6 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Shop());
       case '/others':
         return MaterialPageRoute(builder: (_) => Others());
+      case '/kontak':
+        return MaterialPageRoute(builder: (_) => Kontak());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
