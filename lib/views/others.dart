@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cleon_mobile/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Others extends StatelessWidget {
   const Others({Key? key}) : super(key: key);
@@ -87,7 +89,7 @@ class Others extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   )),
               onPressed: () {
-                Navigator.pushNamed(context, '/signin');
+                BlocProvider.of<AuthBloc>(context).add(Logout());
               },
               child: Text("Logout"),
             ),

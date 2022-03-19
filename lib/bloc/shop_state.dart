@@ -4,7 +4,7 @@ part of 'shop_bloc.dart';
 
 @immutable
 class ShopState {
-  Widget currentWidget = const Ss();
+  Widget currentWidget;
 
   ShopState({required this.currentWidget});
 }

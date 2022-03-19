@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/app.dart';
+import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home.dart';
 import 'package:cleon_mobile/views/kontak.dart';
@@ -11,12 +12,20 @@ import 'package:cleon_mobile/views/signup.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
-  static Route<dynamic> generate(RouteSettings settings) {
+  final userRepository = UserRepository();
+
+  Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => Dashboard());
+        return MaterialPageRoute(
+            builder: (_) => Dashboard(
+                  userRepository: userRepository,
+                ));
       case '/signin':
-        return MaterialPageRoute(builder: (_) => SignIn());
+        return MaterialPageRoute(
+            builder: (_) => SignIn(
+                  userRepository: userRepository,
+                ));
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignUp());
       case '/home':
