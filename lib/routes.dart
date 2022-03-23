@@ -12,19 +12,19 @@ import 'package:cleon_mobile/views/signup.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
-  final userRepository = UserRepository();
+  final _userRepository = UserRepository();
 
   Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
             builder: (_) => Dashboard(
-                  userRepository: userRepository,
+                  userRepository: _userRepository,
                 ));
       case '/signin':
         return MaterialPageRoute(
             builder: (_) => SignIn(
-                  userRepository: userRepository,
+                  userRepository: _userRepository,
                 ));
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignUp());

@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubit/dashboard_cubit.dart';
+
 class LoginForm extends StatefulWidget {
   final UserRepository userRepository;
   const LoginForm({Key? key, required this.userRepository}) : super(key: key);
@@ -108,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: () async {
+                          onPressed: () {
                             BlocProvider.of<LoginBloc>(context).add(
                                 LoginButtonPressed(
                                     email: _emailController.text,
@@ -129,7 +131,8 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/signup');
+                    context.read<DashboardCubit>().signUp();
+                    // Navigator.pushNamed(context, '/signup');
                   },
                   child: const Text("Registrasi disini"),
                 )

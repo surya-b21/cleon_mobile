@@ -9,4 +9,6 @@ class DashboardCubit extends Cubit<DashboardState> {
   void signIn() => emit(SignInState());
 
   void signUp() => emit(SignUpState());
+
+  void back() => emit(DashboardInitial());
 }
