@@ -3,8 +3,8 @@
 import 'package:cleon_mobile/cubit/dashboard_cubit.dart';
 import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
-import 'package:cleon_mobile/views/signin.dart';
-import 'package:cleon_mobile/views/signup.dart';
+import 'package:cleon_mobile/views/auth/signin.dart';
+import 'package:cleon_mobile/views/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +24,20 @@ class Dashboard extends StatelessWidget {
               userRepository: userRepository,
             );
           } else if (state is SignUpState) {
-            return SignUp();
+            return AnimatedSwitcher(
+              switchOutCurve: Threshold(0),
+              duration: Duration(milliseconds: 1000),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.25),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              child: SignUp(),
+            );
           } else {
             return Scaffold(
               backgroundColor: Color(0xff2F2E41),

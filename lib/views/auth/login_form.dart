@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/dashboard_cubit.dart';
+import '../../cubit/dashboard_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository userRepository;
@@ -18,6 +18,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
   final UserRepository userRepository;
   _LoginFormState(this.userRepository);
 
@@ -38,7 +39,7 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Form(
-            // key: _formKey,
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -66,6 +67,12 @@ class _LoginFormState extends State<LoginForm> {
                             borderSide: BorderSide(color: Colors.white)),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff867EBA)))),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'field tidak boleh kosong';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -91,6 +98,12 @@ class _LoginFormState extends State<LoginForm> {
                             borderSide: BorderSide(color: Colors.white)),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Color(0xff867EBA)))),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'field tidak boleh kosong';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -111,10 +124,12 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                           ),
                           onPressed: () {
-                            BlocProvider.of<LoginBloc>(context).add(
-                                LoginButtonPressed(
-                                    email: _emailController.text,
-                                    password: _passwordController.text));
+                            if (_formKey.currentState!.validate()) {
+                              BlocProvider.of<LoginBloc>(context).add(
+                                  LoginButtonPressed(
+                                      email: _emailController.text,
+                                      password: _passwordController.text));
+                            }
                           },
                           child: const Text(
                             'Login',
