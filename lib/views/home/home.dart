@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cleon_mobile/views/home/detail.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -64,6 +65,10 @@ class _HomeState extends State<Home> {
                     child: ListTile(
                       title: Text(paket[index]),
                       trailing: Text('29/01/2022'),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Detail()));
+                      },
                     ),
                   );
                 }),

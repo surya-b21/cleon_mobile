@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/views/bottomnavbar.dart';
-import 'package:cleon_mobile/views/home.dart';
+import 'package:cleon_mobile/views/home/home.dart';
 import 'package:cleon_mobile/views/others.dart';
 import 'package:cleon_mobile/views/shop/shop.dart';
 import 'package:flutter/material.dart';

@@ -2,6 +2,9 @@
 
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubit/dashboard_cubit.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -16,6 +19,15 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff2F2E41),
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              context.read<DashboardCubit>().back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_rounded)),
+      ),
       backgroundColor: Color(0xff2F2E41),
       body: Form(
         key: _formKey,
@@ -45,6 +57,12 @@ class _SignUpState extends State<SignUp> {
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xff867EBA)))),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'field tidak boleh kosong';
+                  }
+                  return null;
+                },
               ),
             ),
             Padding(
@@ -66,6 +84,20 @@ class _SignUpState extends State<SignUp> {
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xff867EBA)))),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'field tidak boleh kosong';
+                  }
+                  String pattern =
+                      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                      r"{0,253}[a-zA-Z0-9])?)*$";
+                  RegExp regex = RegExp(pattern);
+                  if (!regex.hasMatch(value)) {
+                    return 'Silahkan masukkan email yang benar';
+                  }
+                  return null;
+                },
               ),
             ),
             Padding(
@@ -88,6 +120,12 @@ class _SignUpState extends State<SignUp> {
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xff867EBA)))),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'field tidak boleh kosong';
+                  }
+                  return null;
+                },
               ),
             ),
             Padding(
@@ -110,6 +148,12 @@ class _SignUpState extends State<SignUp> {
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xff867EBA)))),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'field tidak boleh kosong';
+                  }
+                  return null;
+                },
               ),
             ),
             SizedBox(
@@ -129,7 +173,9 @@ class _SignUpState extends State<SignUp> {
                   'Daftar',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
               ),
             ),
             SizedBox(
@@ -141,7 +187,9 @@ class _SignUpState extends State<SignUp> {
             ),
             TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/signin');
+                  context.read<DashboardCubit>().signIn();
+                  // Navigator.pushNamedAndRemoveUntil(
+                  //     context, '/signin', (route) => false);
                 },
                 child: Text('Login disini'))
           ],
