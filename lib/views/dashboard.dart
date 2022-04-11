@@ -36,7 +36,7 @@ class Dashboard extends StatelessWidget {
                   child: child,
                 );
               },
-              child: SignUp(),
+              child: SignUp(userRepository: userRepository),
             );
           } else {
             return Scaffold(

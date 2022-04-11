@@ -1,5 +1,3 @@
-// ignore_for_file: no_logic_in_create_state
-
 import 'package:cleon_mobile/bloc/login_bloc.dart';
 import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
@@ -14,13 +12,11 @@ class LoginForm extends StatefulWidget {
   const LoginForm({Key? key, required this.userRepository}) : super(key: key);
 
   @override
-  State<LoginForm> createState() => _LoginFormState(userRepository);
+  State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  final UserRepository userRepository;
-  _LoginFormState(this.userRepository);
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -147,7 +143,6 @@ class _LoginFormState extends State<LoginForm> {
                 TextButton(
                   onPressed: () {
                     context.read<DashboardCubit>().signUp();
-                    // Navigator.pushNamed(context, '/signup');
                   },
                   child: const Text("Registrasi disini"),
                 )

@@ -27,7 +27,8 @@ class RouteGenerator {
                   userRepository: _userRepository,
                 ));
       case '/signup':
-        return MaterialPageRoute(builder: (_) => SignUp());
+        return MaterialPageRoute(
+            builder: (_) => SignUp(userRepository: _userRepository));
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       case '/app':

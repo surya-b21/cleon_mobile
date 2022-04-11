@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:cleon_mobile/utils/constant.dart';
@@ -42,8 +44,18 @@ class UserRepository {
     return false;
   }
 
-  deleteToken() async {
+  Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("token");
+  }
+
+  Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    await http.post(Uri.parse("$API/logout"),
+        headers: {'Authorization': 'Bearer $token'});
+
     await prefs.clear();
   }
 }
