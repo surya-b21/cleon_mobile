@@ -16,6 +16,11 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordCOnfirmationController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +46,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: TextFormField(
+                controller: _nameController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     hintText: "Masukkan nama anda",
@@ -68,6 +74,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
+                controller: _emailController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     hintText: "Masukkan email anda",
@@ -103,6 +110,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -131,6 +139,7 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
+                controller: _passwordCOnfirmationController,
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
