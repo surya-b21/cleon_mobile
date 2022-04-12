@@ -58,4 +58,13 @@ class UserRepository {
 
     await prefs.clear();
   }
+
+  Future<bool> lupaPassword(String email) async {
+    final response = await http
+        .post(Uri.parse("$API/forgot-password"), body: {'email': email});
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
 }

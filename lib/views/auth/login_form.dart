@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cleon_mobile/bloc/login_bloc.dart';
 import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
+import 'package:cleon_mobile/views/auth/lupa_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -134,8 +137,16 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LupaPassword()));
+                    },
+                    child: Text(
+                      "Lupa Password",
+                    )),
                 const Text(
                   "Belum punya akun ?",
                   style: TextStyle(color: Colors.white),
