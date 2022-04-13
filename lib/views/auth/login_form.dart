@@ -3,6 +3,7 @@
 import 'package:cleon_mobile/bloc/login_bloc.dart';
 import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
+import 'package:cleon_mobile/views/auth/email_verification.dart';
 import 'package:cleon_mobile/views/auth/lupa_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -156,7 +157,15 @@ class _LoginFormState extends State<LoginForm> {
                     context.read<DashboardCubit>().signUp();
                   },
                   child: const Text("Registrasi disini"),
-                )
+                ),
+                // TextButton(
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (_) => EmailVerification()));
+                //     },
+                //     child: Text('Email Verif'))
               ],
             ),
           );

@@ -67,4 +67,21 @@ class UserRepository {
     }
     return false;
   }
+
+  Future<bool> cekVerifikasiEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    final response = await http.post(
+        Uri.parse("$API/email/verification-notification"),
+        headers: {'Authorization': 'Bearer $token'});
+
+    Map<String, dynamic> details = jsonDecode(response.body);
+
+    if (details['pesan'] == 'terverifikasi') {
+      return true;
+    }
+
+    return false;
+  }
 }

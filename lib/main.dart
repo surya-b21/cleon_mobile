@@ -2,8 +2,10 @@
 
 import 'package:cleon_mobile/app.dart';
 import 'package:cleon_mobile/bloc/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/email_verification_bloc.dart';
 import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/routes.dart';
+import 'package:cleon_mobile/views/auth/email_verification.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +56,38 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthAuthenticated) {
-            return App();
+            return BlocProvider(
+              create: (context) =>
+                  EmailVerificationBloc(userRepository: userRepository)
+                    ..add(CheckingVerificationStatus()),
+              child: BlocBuilder<EmailVerificationBloc, EmailVerificationState>(
+                builder: (context, state) {
+                  if (state is EmailVerificated) {
+                    return App();
+                  }
+                  if (state is EmailUnverificated) {
+                    return EmailVerification();
+                  }
+                  return Scaffold(
+                    backgroundColor: Color(0xff2F2E41),
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                          Text(
+                            "Loading",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
           }
           if (state is AuthUnauthenticated) {
             return Dashboard(
@@ -63,24 +96,36 @@ class MyApp extends StatelessWidget {
           }
           if (state is AuthLoading) {
             return Scaffold(
+              backgroundColor: Color(0xff2F2E41),
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    CircularProgressIndicator(),
-                    Text("Loading"),
+                    CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "Loading",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ],
                 ),
               ),
             );
           }
           return Scaffold(
+            backgroundColor: Color(0xff2F2E41),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  CircularProgressIndicator(),
-                  Text("Loading"),
+                  CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                  Text(
+                    "Loading",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
