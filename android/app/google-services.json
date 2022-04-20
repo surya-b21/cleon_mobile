@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1071653908052",
+    "project_id": "cleon-mobile-deep-link",
+    "storage_bucket": "cleon-mobile-deep-link.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071653908052:android:9ddf727452f31627a947c1",
+        "android_client_info": {
+          "package_name": "com.example.cleon_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071653908052-ur785kpi0v4vuj0a0aiq6903smlb9a58.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cleon_mobile",
+            "certificate_hash": "3adb786f6c2e82fb44bfb802145271b916ca41f1"
+          }
+        },
+        {
+          "client_id": "1071653908052-42s7pp3ig0o49htgq9hd8kho24io3eqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1s_-s5sTt1DBtkbspwEoeuveuWQvQzMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071653908052-42s7pp3ig0o49htgq9hd8kho24io3eqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

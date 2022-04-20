@@ -84,4 +84,11 @@ class UserRepository {
 
     return false;
   }
+
+  Future<void> verifyEmail(Uri uri) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    await http.get(uri, headers: {'Authorization': 'Bearer $token'});
+  }
 }

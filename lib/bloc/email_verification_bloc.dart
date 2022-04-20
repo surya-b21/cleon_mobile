@@ -21,7 +21,12 @@ class EmailVerificationBloc
       }
     });
     on<SendVerificationLink>((event, emit) async {
+      emit(EmailVerificationLoading());
       await userRepository.cekVerifikasiEmail();
+      emit(EmailUnverificated());
+    });
+    on<VerifyingEmail>((event, emit) async {
+      await userRepository.verifyEmail(event.uri);
     });
   }
 }

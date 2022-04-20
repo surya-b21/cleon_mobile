@@ -24,20 +24,7 @@ class Dashboard extends StatelessWidget {
               userRepository: userRepository,
             );
           } else if (state is SignUpState) {
-            return AnimatedSwitcher(
-              switchOutCurve: Threshold(0),
-              duration: Duration(milliseconds: 1000),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0, 0.25),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              child: SignUp(userRepository: userRepository),
-            );
+            return SignUp(userRepository: userRepository);
           } else {
             return Scaffold(
               backgroundColor: Color(0xff2F2E41),

@@ -7,8 +7,11 @@ import 'package:cleon_mobile/repositories/user_repositories.dart';
 import 'package:cleon_mobile/routes.dart';
 import 'package:cleon_mobile/views/auth/email_verification.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override
@@ -30,7 +33,11 @@ class SimpleBlocObserver extends BlocObserver {
   }
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final UserRepository userRepository = UserRepository();
   BlocOverrides.runZoned(
       () => runApp(BlocProvider<AuthBloc>(
@@ -43,9 +50,15 @@ void main() {
       blocObserver: SimpleBlocObserver());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final UserRepository userRepository;
   const MyApp({Key? key, required this.userRepository}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final routeGenerator = RouteGenerator();
@@ -58,14 +71,13 @@ class MyApp extends StatelessWidget {
           if (state is AuthAuthenticated) {
             return BlocProvider(
               create: (context) =>
-                  EmailVerificationBloc(userRepository: userRepository)
+                  EmailVerificationBloc(userRepository: widget.userRepository)
                     ..add(CheckingVerificationStatus()),
               child: BlocBuilder<EmailVerificationBloc, EmailVerificationState>(
                 builder: (context, state) {
                   if (state is EmailVerificated) {
                     return App();
-                  }
-                  if (state is EmailUnverificated) {
+                  } else if (state is EmailUnverificated) {
                     return EmailVerification();
                   }
                   return Scaffold(
@@ -76,6 +88,9 @@ class MyApp extends StatelessWidget {
                         children: const [
                           CircularProgressIndicator(
                             color: Colors.white,
+                          ),
+                          SizedBox(
+                            height: 15,
                           ),
                           Text(
                             "Loading",
@@ -88,13 +103,11 @@ class MyApp extends StatelessWidget {
                 },
               ),
             );
-          }
-          if (state is AuthUnauthenticated) {
+          } else if (state is AuthUnauthenticated) {
             return Dashboard(
-              userRepository: userRepository,
+              userRepository: widget.userRepository,
             );
-          }
-          if (state is AuthLoading) {
+          } else if (state is AuthLoading) {
             return Scaffold(
               backgroundColor: Color(0xff2F2E41),
               body: Center(
@@ -103,6 +116,9 @@ class MyApp extends StatelessWidget {
                   children: const [
                     CircularProgressIndicator(
                       color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 15,
                     ),
                     Text(
                       "Loading",
@@ -121,6 +137,9 @@ class MyApp extends StatelessWidget {
                 children: const [
                   CircularProgressIndicator(
                     color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   Text(
                     "Loading",

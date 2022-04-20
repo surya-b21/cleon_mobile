@@ -10,3 +10,15 @@ abstract class EmailVerificationEvent extends Equatable {
 class SendVerificationLink extends EmailVerificationEvent {}
 
 class CheckingVerificationStatus extends EmailVerificationEvent {}
+
+class VerifyingEmail extends EmailVerificationEvent {
+  final Uri uri;
+
+  const VerifyingEmail({required this.uri});
+
+  @override
+  List<Object> get props => [uri];
+
+  @override
+  String toString() => 'Verifying to ' + uri.toString();
+}

@@ -1,11 +1,49 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cleon_mobile/bloc/email_verification_bloc.dart';
 import 'package:cleon_mobile/utils/logo.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmailVerification extends StatelessWidget {
+class EmailVerification extends StatefulWidget {
   const EmailVerification({Key? key}) : super(key: key);
 
+  @override
+  State<EmailVerification> createState() => _EmailVerificationState();
+}
+
+class _EmailVerificationState extends State<EmailVerification> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initDynamicLink();
+  }
+
+  void initDynamicLink() async {
+    FirebaseDynamicLinks.instance.onLink.listen((event) {
+      Uri link = event.link;
+      // BlocProvider.of<EmailVerificationBloc>(context)
+      //     .add(VerifyingEmail(uri: link));
+      print(link.toString());
+
+      Navigator.defaultRouteName;
+    });
+  }
+
+  // void handleLinkData(PendingDynamicLinkData data) {
+  //   final Uri? uri = data.link;
+  //   print(data.link.toString());
+  //   if (uri != null) {
+  //     final queryParams = uri.queryParameters;
+  //     if (queryParams.isNotEmpty) {
+  //       String? userName = queryParams["username"];
+  //       // verify the username is parsed correctly
+  //       print("My users username is: $userName");
+  //     }
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +86,10 @@ class EmailVerification extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        BlocProvider.of<EmailVerificationBloc>(context)
+                            .add(SendVerificationLink());
+                      },
                       child: Text(
                         "Kirim Link Verifikasi Ulang",
                         style: TextStyle(color: Colors.black87),

@@ -42,7 +42,13 @@ class RouteGenerator {
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
-                  body: Center(child: Text("Not Found")),
+                  body: Center(
+                      child: ElevatedButton(
+                    child: Text('back'),
+                    onPressed: () {
+                      Navigator.defaultRouteName;
+                    },
+                  )),
                 ));
     }
   }
