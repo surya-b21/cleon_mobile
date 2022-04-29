@@ -24,9 +24,10 @@ class _EmailVerificationState extends State<EmailVerification> {
   void initDynamicLink() async {
     FirebaseDynamicLinks.instance.onLink.listen((event) {
       Uri link = event.link;
-      // BlocProvider.of<EmailVerificationBloc>(context)
-      //     .add(VerifyingEmail(uri: link));
-      print(link.toString());
+      print("parameter = " + link.toString());
+      BlocProvider.of<EmailVerificationBloc>(context)
+          .add(VerifyingEmail(uri: link));
+      Navigator.pop(context);
     });
   }
 

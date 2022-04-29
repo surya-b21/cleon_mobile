@@ -27,6 +27,7 @@ class EmailVerificationBloc
     });
     on<VerifyingEmail>((event, emit) async {
       await userRepository.verifyEmail(event.uri);
+      emit(EmailVerificated());
     });
   }
 }
