@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:equatable/equatable.dart';
 
 part 'email_verification_event.dart';

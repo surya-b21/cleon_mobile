@@ -2,10 +2,11 @@
 
 import 'package:cleon_mobile/bloc/register_bloc.dart';
 import 'package:cleon_mobile/cubit/dashboard_cubit.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/logo.dart';
 
@@ -205,7 +206,24 @@ class _RegisterFormState extends State<RegisterForm> {
                         ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 250,
+                  height: 45,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    onPressed: () {},
+                    label: Text(
+                      "Masuk dengan akun google",
+                      style: TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                    icon: FaIcon(FontAwesomeIcons.google,
+                        color: Color(0xffdb3236)),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
                 Text(
                   "Sudah punya akun ?",

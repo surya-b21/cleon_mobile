@@ -27,8 +27,6 @@ class _EmailVerificationState extends State<EmailVerification> {
       // BlocProvider.of<EmailVerificationBloc>(context)
       //     .add(VerifyingEmail(uri: link));
       print(link.toString());
-
-      Navigator.defaultRouteName;
     });
   }
 

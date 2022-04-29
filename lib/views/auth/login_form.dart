@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cleon_mobile/api/google_signin_api.dart';
 import 'package:cleon_mobile/bloc/login_bloc.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:cleon_mobile/views/auth/lupa_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../cubit/dashboard_cubit.dart';
 
@@ -137,7 +139,23 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 250,
+                  height: 45,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    onPressed: () async {
+                      await GoogleSignInApi.login();
+                    },
+                    label: Text(
+                      "Masuk dengan akun google",
+                      style: TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                    icon: FaIcon(FontAwesomeIcons.google,
+                        color: Color(0xffdb3236)),
+                  ),
                 ),
                 TextButton(
                     onPressed: () {

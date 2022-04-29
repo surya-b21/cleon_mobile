@@ -1,4 +1,4 @@
-package com.example.cleon_mobile
+package com.lifemedia.cleon.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

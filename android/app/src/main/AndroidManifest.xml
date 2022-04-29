@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cleon_mobile">
+    package="com.lifemedia.cleon.mobile">
    <application
         android:label="Cleon Mobile"
         android:name="${applicationName}"
