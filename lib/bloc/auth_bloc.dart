@@ -18,9 +18,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthUnauthenticated());
       }
     });
-    on<LoggedIn>((event, emit) {
+    on<LoggedIn>((event, emit) async {
       emit(AuthLoading());
-      userRepository.saveToken(event.token);
+      await userRepository.saveToken(event.token);
       emit(AuthAuthenticated());
     });
     on<Logout>((event, emit) {
