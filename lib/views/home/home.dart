@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/models/user.dart';
 import 'package:cleon_mobile/views/home/detail.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +15,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List paket = List<String>.generate(15, (index) => "Paket SS ${index + 1} GB");
+  late Future<List<User>> futureUser;
+  final api = ApiServices();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    futureUser = api.getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +40,29 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15))),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "hi, Mas Joni",
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                "joni@gmail.com",
-                style: TextStyle(fontSize: 14),
-              ),
-            ],
-          ),
+          title: FutureBuilder<List<User>>(
+              future: futureUser,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "hi, " + snapshot.data![0].name,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        snapshot.data![0].email,
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  );
+                } else {
+                  return CupertinoActivityIndicator(
+                    color: Colors.white,
+                  );
+                }
+              }),
         ),
       ),
       backgroundColor: Color(0xffdedede),
