@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/app.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home/home.dart';
 import 'package:cleon_mobile/views/kontak.dart';
@@ -41,9 +41,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Kontak());
       default:
         return MaterialPageRoute(
-            builder: (_) => Scaffold(
-                  body: Center(child: Text("Not Found")),
-                ));
+          builder: (_) => Scaffold(
+              body: Center(
+            child: Text('Not Found'),
+          )),
+        );
     }
   }
 }

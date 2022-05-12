@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 part 'dashboard_state.dart';
 
 class DashboardCubit extends Cubit<DashboardState> {

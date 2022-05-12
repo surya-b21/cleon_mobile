@@ -2,7 +2,7 @@
 
 import 'package:cleon_mobile/bloc/auth_bloc.dart';
 import 'package:cleon_mobile/bloc/register_bloc.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/views/auth/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/cubit/dashboard_cubit.dart';
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:cleon_mobile/views/auth/signin.dart';
 import 'package:cleon_mobile/views/auth/signup.dart';
@@ -24,20 +24,7 @@ class Dashboard extends StatelessWidget {
               userRepository: userRepository,
             );
           } else if (state is SignUpState) {
-            return AnimatedSwitcher(
-              switchOutCurve: Threshold(0),
-              duration: Duration(milliseconds: 1000),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0, 0.25),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              child: SignUp(userRepository: userRepository),
-            );
+            return SignUp(userRepository: userRepository);
           } else {
             return Scaffold(
               backgroundColor: Color(0xff2F2E41),
