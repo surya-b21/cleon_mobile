@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List paket = List<String>.generate(15, (index) => "Paket SS ${index + 1} GB");
-  late Future<List<User>> futureUser;
+  late Future<User> futureUser;
   final api = ApiServices();
 
   @override
@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15))),
-          title: FutureBuilder<List<User>>(
+          title: FutureBuilder<User>(
               future: futureUser,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -48,11 +48,11 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "hi, " + snapshot.data![0].name,
+                        "hi, " + snapshot.data!.name,
                         style: TextStyle(fontSize: 18),
                       ),
                       Text(
-                        snapshot.data![0].email,
+                        snapshot.data!.email,
                         style: TextStyle(fontSize: 14),
                       ),
                     ],

@@ -10,7 +10,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 class UserRepository {
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   Future<String> register(String name, String email, String password,
       String password_confirmation) async {
@@ -33,13 +33,9 @@ class UserRepository {
       "device_id": await getDeviceId()
     });
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> token = jsonDecode(response.body);
-      // await storage.write(key: 'token', value: token['token']);
-      return token['token'];
-    }
-
-    return '';
+    Map<String, dynamic> token = jsonDecode(response.body);
+    // await storage.write(key: 'token', value: token['token']);
+    return token['token'];
   }
 
   getDeviceId() async {
@@ -71,14 +67,19 @@ class UserRepository {
     return false;
   }
 
-  Future<void> logout() async {
+  Future<bool> logout() async {
     String? token = await storage.read(key: 'token');
 
-    await http.post(Uri.parse("$API/logout"),
+    final response = await http.post(Uri.parse("$API/logout"),
         headers: {'Authorization': 'Bearer $token'});
 
-    await storage.delete(key: 'token');
-    await storage.deleteAll();
+    if (response.statusCode == 200) {
+      await storage.delete(key: 'token');
+      await storage.deleteAll();
+      return true;
+    }
+
+    return false;
   }
 
   Future<bool> lupaPassword(String email) async {

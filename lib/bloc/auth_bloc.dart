@@ -23,10 +23,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await userRepository.saveToken(event.token);
       emit(AuthAuthenticated());
     });
-    on<Logout>((event, emit) {
+    on<Logout>((event, emit) async {
       emit(AuthLoading());
-      userRepository.logout();
-      emit(AuthUnauthenticated());
+      bool logout = await userRepository.logout();
+      if (logout) {
+        emit(AuthUnauthenticated());
+      }
     });
   }
 }
