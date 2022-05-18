@@ -20,6 +20,7 @@ class _OthersState extends State<Others> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     futureUser = api.getUser();
@@ -103,6 +104,9 @@ class _OthersState extends State<Others> {
               leading: Icon(Icons.password),
               title: Text("Ubah Kata Sandi"),
               subtitle: Text("Ubah kata sandi anda dengan kata sandi baru"),
+              onTap: () {
+                Navigator.pushNamed(context, '/ganti-password');
+              },
             ),
           ),
           Card(

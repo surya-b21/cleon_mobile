@@ -4,8 +4,9 @@ import 'package:cleon_mobile/app.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home/home.dart';
-import 'package:cleon_mobile/views/kontak.dart';
-import 'package:cleon_mobile/views/others.dart';
+import 'package:cleon_mobile/views/others/ganti-password.dart';
+import 'package:cleon_mobile/views/others/kontak.dart';
+import 'package:cleon_mobile/views/others/others.dart';
 import 'package:cleon_mobile/views/shop/shop.dart';
 import 'package:cleon_mobile/views/auth/signin.dart';
 import 'package:cleon_mobile/views/auth/signup.dart';
@@ -39,6 +40,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Others());
       case '/kontak':
         return MaterialPageRoute(builder: (_) => Kontak());
+      case '/ganti-password':
+        return MaterialPageRoute(builder: (_) => GantiPassword());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -16,6 +16,7 @@ class EmailVerification extends StatefulWidget {
 class _EmailVerificationState extends State<EmailVerification> {
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     initDynamicLink();

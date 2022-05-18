@@ -7,6 +7,7 @@ part 'google_login_state.dart';
 class GoogleLoginBloc extends Bloc<GoogleLoginEvent, GoogleLoginState> {
   GoogleLoginBloc() : super(GoogleLoginInitial()) {
     on<GoogleLoginEvent>((event, emit) {
+      // ignore: todo
       // TODO: implement event handler
     });
   }

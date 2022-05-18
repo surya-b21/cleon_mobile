@@ -112,4 +112,23 @@ class UserRepository {
 
     await http.get(uri, headers: {'Authorization': 'Bearer $token'});
   }
+
+  Future<String> gantiPassword(
+      String password, String password_confirmation) async {
+    String? token = await storage.read(key: 'token');
+    final response = await http.post(Uri.parse("$API/ganti-password"),
+        headers: {
+          'Authorization': 'Bearer $token'
+        },
+        body: {
+          "password": password,
+          "password_confirmation": password_confirmation
+        });
+
+    if (response.statusCode == 200) {
+      return "Berhasil Mengganti Password";
+    }
+
+    return "Gagal Mengganti Password";
+  }
 }

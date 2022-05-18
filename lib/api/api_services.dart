@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cleon_mobile/models/riwayat.dart';
 import 'package:cleon_mobile/models/user.dart';
 import 'package:cleon_mobile/utils/constant.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -25,16 +26,28 @@ class ApiServices {
     }
   }
 
-  Future<List<Paket>> getPaket(int id_jenis) async {
+  Future<List<Paket>> getPaket(int idJenis) async {
     String? token = await getToken();
     final response = await http.get(
-        Uri.parse('$API/getpaket?id_jenis=$id_jenis'),
+        Uri.parse('$API/getpaket?id_jenis=$idJenis'),
         headers: {'Authorization': 'Bearer $token'});
     if (response.statusCode == 200) {
       final paket = paketFromJson(response.body);
       return paket;
     } else {
       throw Exception('Gagal mendapatkan data');
+    }
+  }
+
+  Future<List<Riwayat>> getRiwayat() async {
+    String? token = await getToken();
+    final response = await http.get(Uri.parse("$API/getriwayat"),
+        headers: {'Authorization': 'Bearer $token'});
+    if (response.statusCode == 200) {
+      final riwayat = riwayatFromJson(response.body);
+      return riwayat;
+    } else {
+      throw Exception('gagal mendapatkan data');
     }
   }
 }

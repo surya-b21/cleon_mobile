@@ -143,6 +143,9 @@ class _RegisterFormState extends State<RegisterForm> {
                         if (value!.isEmpty) {
                           return 'field tidak boleh kosong';
                         }
+                        if (value.length < 8) {
+                          return 'minimal 8 karakter';
+                        }
                         return null;
                       },
                     ),
@@ -173,6 +176,12 @@ class _RegisterFormState extends State<RegisterForm> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'field tidak boleh kosong';
+                        }
+                        if (value.length < 8) {
+                          return 'minimal 8 karakter';
+                        }
+                        if (value != _passwordController.text) {
+                          return 'password tidak sama';
                         }
                         return null;
                       },

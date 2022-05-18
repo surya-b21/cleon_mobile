@@ -16,6 +16,7 @@ class _SsState extends State<Ss> {
   late Future<List<Paket>> futurePaket;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     futurePaket = api.getPaket(2);
@@ -48,34 +49,10 @@ class _SsState extends State<Ss> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: Color(0xff867EBA)),
               ),
             );
           }
         });
-    // return ListView(
-    //   children: [
-    //     Card(
-    //       margin: EdgeInsets.all(10),
-    //       shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.all(Radius.circular(10))),
-    //       child: ListTile(
-    //         title: Text("SS 1 50 GB"),
-    //         subtitle: Text("Masa aktif 30 hari, 1.6 mpbs"),
-    //         trailing: Text("Rp 50.000"),
-    //       ),
-    //     ),
-    //     Card(
-    //       margin: EdgeInsets.only(right: 10, left: 10, bottom: 5),
-    //       shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.all(Radius.circular(10))),
-    //       child: ListTile(
-    //         title: Text("SS 2 50 GB"),
-    //         subtitle: Text("Masa aktif 30 hari, 1.6 mpbs"),
-    //         trailing: Text("Rp 100.000"),
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

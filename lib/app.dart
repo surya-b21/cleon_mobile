@@ -2,7 +2,7 @@
 
 import 'package:cleon_mobile/views/bottomnavbar.dart';
 import 'package:cleon_mobile/views/home/home.dart';
-import 'package:cleon_mobile/views/others.dart';
+import 'package:cleon_mobile/views/others/others.dart';
 import 'package:cleon_mobile/views/shop/shop.dart';
 import 'package:flutter/material.dart';
 

@@ -17,6 +17,7 @@ class _KuotaState extends State<Kuota> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     futurePaket = api.getPaket(4);
@@ -49,7 +50,7 @@ class _KuotaState extends State<Kuota> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: Color(0xff867EBA)),
               ),
             );
           }

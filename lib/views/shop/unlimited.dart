@@ -17,6 +17,7 @@ class _UnlimitedState extends State<Unlimited> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     futurePaket = api.getPaket(5);
@@ -49,7 +50,7 @@ class _UnlimitedState extends State<Unlimited> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: Color(0xff867EBA)),
               ),
             );
           }
