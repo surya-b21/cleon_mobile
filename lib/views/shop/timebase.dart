@@ -2,7 +2,9 @@
 
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/views/shop/detail_paket.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimeBase extends StatefulWidget {
   const TimeBase({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class TimeBase extends StatefulWidget {
 class _TimeBaseState extends State<TimeBase> {
   final api = ApiServices();
   late Future<List<Paket>> getPaket;
-
+  final currency = NumberFormat("#,###", "pt");
   @override
   void initState() {
     // ignore: todo
@@ -38,10 +40,20 @@ class _TimeBaseState extends State<TimeBase> {
                         top: 10, right: 10, left: 10, bottom: 5),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: ListTile(
-                      title: Text(data.nama),
-                      subtitle: Text(data.keterangan),
-                      trailing: Text("Rp. " + data.harga.toString()),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: ListTile(
+                        title: Text(data.nama),
+                        subtitle: Text(data.keterangan),
+                        trailing: Text("Rp. ${currency.format(data.harga)}"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailPaket(paket: data)));
+                        },
+                      ),
                     ),
                   );
                 });

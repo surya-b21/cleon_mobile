@@ -3,9 +3,9 @@
 import 'package:cleon_mobile/models/riwayat.dart';
 import 'package:flutter/material.dart';
 
-class Detail extends StatelessWidget {
+class DetailRiwayat extends StatelessWidget {
   final Riwayat riwayat;
-  const Detail({Key? key, required this.riwayat}) : super(key: key);
+  const DetailRiwayat({Key? key, required this.riwayat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

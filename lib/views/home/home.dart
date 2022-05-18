@@ -3,7 +3,7 @@
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/riwayat.dart';
 import 'package:cleon_mobile/models/user.dart';
-import 'package:cleon_mobile/views/home/detail.dart';
+import 'package:cleon_mobile/views/home/detail_riwayat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => Detail(
+                                          builder: (_) => DetailRiwayat(
                                                 riwayat: data,
                                               )));
                                 },
