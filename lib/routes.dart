@@ -2,7 +2,6 @@
 
 import 'package:cleon_mobile/app.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
-import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:cleon_mobile/views/home/home.dart';
 import 'package:cleon_mobile/views/others/ganti_password.dart';
 import 'package:cleon_mobile/views/others/kontak.dart';
@@ -17,11 +16,11 @@ class RouteGenerator {
 
   Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(
-            builder: (_) => Dashboard(
-                  userRepository: _userRepository,
-                ));
+      // case '/':
+      //   return MaterialPageRoute(
+      //       builder: (_) => Dashboard(
+      //             userRepository: _userRepository,
+      //           ));
       case '/signin':
         return MaterialPageRoute(
             builder: (_) => SignIn(

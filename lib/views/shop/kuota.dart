@@ -2,6 +2,7 @@
 
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/utils/constant.dart';
 import 'package:cleon_mobile/views/shop/detail_paket.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,7 +23,7 @@ class _KuotaState extends State<Kuota> {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    futurePaket = api.getPaket(4);
+    futurePaket = api.getPaket(jenisPaket['kuota']);
   }
 
   @override

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/views/shop/pembayaran.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -124,7 +125,12 @@ class DetailPaket extends StatelessWidget {
                       "Beli",
                       style: TextStyle(fontSize: 20),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Pembayaran(paket: paket)));
+                    },
                   ),
                 )
               ],

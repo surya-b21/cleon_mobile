@@ -15,6 +15,7 @@ class _GantiPasswordState extends State<GantiPassword> {
   final _formKey = GlobalKey<FormState>();
 
   final _passwordController = TextEditingController();
+  final _passwordLamaController = TextEditingController();
   final _passwordConfirmationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,39 @@ class _GantiPasswordState extends State<GantiPassword> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: TextFormField(
+                keyboardType: TextInputType.visiblePassword,
+                controller: _passwordLamaController,
+                obscureText: true,
+                style: TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                    hintText: "Masukkan password lama anda",
+                    hintStyle: TextStyle(color: Colors.black54),
+                    labelText: "Password Lama",
+                    labelStyle: TextStyle(color: Colors.black),
+                    prefixIcon: Icon(
+                      Icons.password,
+                      color: Colors.black,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                    border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff2F2E41)))),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'field tidak boleh kosong';
+                  }
+                  if (value.length < 8) {
+                    return 'minimal 8 karakter';
+                  }
+                  return null;
+                },
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child: TextFormField(
@@ -115,15 +149,13 @@ class _GantiPasswordState extends State<GantiPassword> {
                   if (_formKey.currentState!.validate()) {
                     String pesan = await _userRepository.gantiPassword(
                         _passwordController.text,
-                        _passwordConfirmationController.text);
+                        _passwordConfirmationController.text,
+                        _passwordLamaController.text);
                     setState(() {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(pesan),
                         backgroundColor: Color(0xff2F2E41),
                       ));
-                      Future.delayed(Duration(seconds: 3), (() {
-                        Navigator.pop(context);
-                      }));
                     });
                   }
                 },

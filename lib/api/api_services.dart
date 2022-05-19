@@ -26,7 +26,7 @@ class ApiServices {
     }
   }
 
-  Future<List<Paket>> getPaket(int idJenis) async {
+  Future<List<Paket>> getPaket(int? idJenis) async {
     String? token = await getToken();
     final response = await http.get(
         Uri.parse('$API/getpaket?id_jenis=$idJenis'),
