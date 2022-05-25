@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:cleon_mobile/bloc/auth_bloc.dart';
-import 'package:cleon_mobile/bloc/login_bloc.dart';
-import 'package:cleon_mobile/cubit/dashboard_cubit.dart';
+import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/login/login_bloc.dart';
+import 'package:cleon_mobile/cubit/dashboard/dashboard_cubit.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/views/auth/login_form.dart';
 import 'package:flutter/material.dart';

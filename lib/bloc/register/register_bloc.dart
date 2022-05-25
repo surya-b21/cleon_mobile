@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cleon_mobile/bloc/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:equatable/equatable.dart';
 

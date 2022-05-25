@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cleon_mobile/api/api_services.dart';
-import 'package:cleon_mobile/bloc/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
 import 'package:cleon_mobile/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

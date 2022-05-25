@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cleon_mobile/cubit/dashboard_cubit.dart';
+import 'package:cleon_mobile/cubit/dashboard/dashboard_cubit.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:cleon_mobile/views/auth/signin.dart';

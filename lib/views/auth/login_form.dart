@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/api/google_signin_api.dart';
-import 'package:cleon_mobile/bloc/login_bloc.dart';
+import 'package:cleon_mobile/bloc/login/login_bloc.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:cleon_mobile/views/auth/lupa_password.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../cubit/dashboard_cubit.dart';
+import '../../cubit/dashboard/dashboard_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository userRepository;
@@ -186,14 +186,6 @@ class _LoginFormState extends State<LoginForm> {
                     },
                     child: const Text("Registrasi disini"),
                   ),
-                  // TextButton(
-                  //     onPressed: () {
-                  //       Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //               builder: (_) => EmailVerification()));
-                  //     },
-                  //     child: Text('Email Verif'))
                 ],
               ),
             ),

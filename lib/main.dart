@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:cleon_mobile/app.dart';
-import 'package:cleon_mobile/bloc/auth_bloc.dart';
-import 'package:cleon_mobile/bloc/email_verification_bloc.dart';
+import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/email_verification/email_verification_bloc.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/routes.dart';
 import 'package:cleon_mobile/views/auth/email_verification.dart';
@@ -10,6 +10,7 @@ import 'package:cleon_mobile/views/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'firebase_options.dart';
 
 class SimpleBlocObserver extends BlocObserver {
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
     final routeGenerator = RouteGenerator();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      builder: EasyLoading.init(),
       title: 'Cleon Mobile',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: BlocBuilder<AuthBloc, AuthState>(
