@@ -2,7 +2,9 @@
 
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/paket.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 
@@ -21,21 +23,21 @@ class _PembayaranState extends State<Pembayaran> {
   MetodePembayaran? _metodePembayaran = MetodePembayaran.gopay;
   final currency = NumberFormat("#,###", "pt");
 
-  void showLoading(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              content: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator()),
-                ],
-              ),
-            ));
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initDynamicLink(context);
+  }
+
+  void initDynamicLink(BuildContext context) async {
+    FirebaseDynamicLinks.instance.onLink
+        .listen((PendingDynamicLinkData dynamicLinkData) {
+      Uri link = dynamicLinkData.link;
+      print(link.toString());
+    }).onError((error) {
+      print(error);
+    });
   }
 
   @override
@@ -199,6 +201,7 @@ class _PembayaranState extends State<Pembayaran> {
                           widget.paket.harga + 1000);
                       print(result);
                       EasyLoading.dismiss();
+                      SystemNavigator.pop();
                     });
                   },
                 ),

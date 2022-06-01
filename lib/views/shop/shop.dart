@@ -33,7 +33,6 @@ class _ShopState extends State<Shop> {
       body: BlocProvider<ShopBloc>(
         create: (context) => ShopBloc(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,

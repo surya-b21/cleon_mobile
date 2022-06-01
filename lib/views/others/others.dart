@@ -3,9 +3,9 @@
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
 import 'package:cleon_mobile/models/user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Others extends StatefulWidget {
   const Others({Key? key}) : super(key: key);
@@ -59,8 +59,23 @@ class _OthersState extends State<Others> {
                         if (snapshot.hasData) {
                           return Text(snapshot.data!.name);
                         } else {
-                          return CupertinoActivityIndicator(
-                            color: Colors.white,
+                          return Shimmer(
+                            gradient: LinearGradient(stops: [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
                           );
                         }
                       }),
@@ -87,8 +102,23 @@ class _OthersState extends State<Others> {
                         if (snapshot.hasData) {
                           return Text(snapshot.data!.email);
                         } else {
-                          return CupertinoActivityIndicator(
-                            color: Colors.white,
+                          return Shimmer(
+                            gradient: LinearGradient(stops: [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
                           );
                         }
                       }),

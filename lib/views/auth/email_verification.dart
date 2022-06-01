@@ -31,18 +31,6 @@ class _EmailVerificationState extends State<EmailVerification> {
     });
   }
 
-  // void handleLinkData(PendingDynamicLinkData data) {
-  //   final Uri? uri = data.link;
-  //   print(data.link.toString());
-  //   if (uri != null) {
-  //     final queryParams = uri.queryParameters;
-  //     if (queryParams.isNotEmpty) {
-  //       String? userName = queryParams["username"];
-  //       // verify the username is parsed correctly
-  //       print("My users username is: $userName");
-  //     }
-  //   }
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

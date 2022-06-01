@@ -9,6 +9,7 @@ import 'package:cleon_mobile/views/others/others.dart';
 import 'package:cleon_mobile/views/shop/shop.dart';
 import 'package:cleon_mobile/views/auth/signin.dart';
 import 'package:cleon_mobile/views/auth/signup.dart';
+import 'package:cleon_mobile/views/shop/success.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -41,6 +42,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Kontak());
       case '/ganti-password':
         return MaterialPageRoute(builder: (_) => GantiPassword());
+      case '/success':
+        return MaterialPageRoute(builder: (_) => Success());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

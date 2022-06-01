@@ -5,7 +5,6 @@ import 'package:cleon_mobile/models/user.dart';
 import 'package:cleon_mobile/utils/constant.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../models/paket.dart';
@@ -61,9 +60,11 @@ class ApiServices {
 
     if (response.statusCode == 200) {
       result = jsonDecode(response.body);
+      print(result['actions'][0]['url']);
       if (!await launchUrlString(result['actions'][1]['url'],
-          mode: LaunchMode.externalApplication))
+          mode: LaunchMode.externalApplication)) {
         throw Exception("can't launch url");
+      }
       return result['actions'][1]['url'];
     }
 
