@@ -25,6 +25,7 @@ class _PembayaranState extends State<Pembayaran> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     initDynamicLink(context);
@@ -34,7 +35,8 @@ class _PembayaranState extends State<Pembayaran> {
     FirebaseDynamicLinks.instance.onLink
         .listen((PendingDynamicLinkData dynamicLinkData) {
       Uri link = dynamicLinkData.link;
-      print(link.toString());
+      var queryParam = link.queryParameters['payment-status'].toString();
+      Navigator.pushNamed(context, '/$queryParam');
     }).onError((error) {
       print(error);
     });

@@ -60,7 +60,7 @@ class ApiServices {
 
     if (response.statusCode == 200) {
       result = jsonDecode(response.body);
-      print(result['actions'][0]['url']);
+      // print(result['actions'][0]['url']);
       if (!await launchUrlString(result['actions'][1]['url'],
           mode: LaunchMode.externalApplication)) {
         throw Exception("can't launch url");
