@@ -4,7 +4,6 @@ import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/riwayat.dart';
 import 'package:cleon_mobile/models/user.dart';
 import 'package:cleon_mobile/views/home/detail_riwayat.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,20 +21,10 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    initDynamicLink();
     // ignore: todo
     super.initState();
     futureUser = api.getUser();
     futureRiwayat = api.getRiwayat();
-  }
-
-  Future<void> initDynamicLink() async {
-    final PendingDynamicLinkData? data =
-        await FirebaseDynamicLinks.instance.getInitialLink();
-    if (data?.link != null) {
-      var queryParam = data?.link.queryParameters['payment-status'].toString();
-      Navigator.pushNamed(context, '/$queryParam');
-    }
   }
 
   @override
