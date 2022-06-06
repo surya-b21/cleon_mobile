@@ -75,26 +75,24 @@ class ApiServices {
     String? token = await getToken();
     final response = await http.post(Uri.parse("$API/gopay?harga=$harga"),
         headers: {'Authorization': 'Bearer $token'});
+    result = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
-      result = jsonDecode(response.body);
-      // print(result['actions'][0]['url']);
-      if (!await launchUrlString(result['actions'][1]['url'],
-          mode: LaunchMode.externalApplication)) {
-        throw Exception("can't launch url");
-      }
-      return result['actions'][1]['url'];
+    if (result['status_code'] != "201") {
+      throw Exception("invalid response");
     }
-
-    return '';
+    if (!await launchUrlString(result['actions'][1]['url'],
+        mode: LaunchMode.externalApplication)) {
+      throw Exception("can't launch url");
+    }
+    return result['actions'][1]['url'];
   }
 
   Future<Transaksi> requestPaket(int idPaket) async {
     String? token = await getToken();
     final response = await http.post(Uri.parse("$API/create-riwayat"),
         headers: {'Authorization': 'Bearer $token'},
-        body: {'id_paket': idPaket});
-    if (response.statusCode != 200) {
+        body: {"id_paket": idPaket.toString()});
+    if (response.statusCode != 201) {
       throw Exception("invalid request");
     }
     return Transaksi.fromJson(jsonDecode(response.body));

@@ -169,15 +169,15 @@ class _PembayaranState extends State<Pembayaran> {
               ],
             ),
           ),
-          TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Success(idPaket: widget.paket.id)));
-              },
-              child: Text("Success Page")),
+          // TextButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) =>
+          //                   Success(idPaket: widget.paket.id)));
+          //     },
+          //     child: Text("Success Page")),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.1,
