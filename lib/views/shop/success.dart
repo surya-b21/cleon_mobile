@@ -1,14 +1,30 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/models/transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Success extends StatefulWidget {
-  const Success({Key? key}) : super(key: key);
+  final int idPaket;
+  const Success({Key? key, required this.idPaket}) : super(key: key);
 
   @override
   State<Success> createState() => _SuccessState();
 }
 
 class _SuccessState extends State<Success> {
+  final api = ApiServices();
+  late Future<Transaksi> createRiwayat;
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    createRiwayat = api.requestPaket(widget.idPaket);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +61,7 @@ class _SuccessState extends State<Success> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Center(
                     child: Text(
                       "Username dan Password",
@@ -56,17 +72,67 @@ class _SuccessState extends State<Success> {
                   SizedBox(
                     height: 25,
                   ),
-                  Text(
-                    "Username =",
-                    style: TextStyle(fontSize: 14),
-                  ),
+                  FutureBuilder<Transaksi>(
+                      future: createRiwayat,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            "Username = " + snapshot.data!.username,
+                            style: TextStyle(fontSize: 14),
+                          );
+                        } else {
+                          return Shimmer(
+                            gradient: LinearGradient(stops: const [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
+                          );
+                        }
+                      }),
                   SizedBox(
                     height: 25,
                   ),
-                  Text(
-                    "Password =",
-                    style: TextStyle(fontSize: 14),
-                  ),
+                  FutureBuilder<Transaksi>(
+                      future: createRiwayat,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            "Password = " + snapshot.data!.password,
+                            style: TextStyle(fontSize: 14),
+                          );
+                        } else {
+                          return Shimmer(
+                            gradient: LinearGradient(stops: const [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
+                          );
+                        }
+                      }),
                   SizedBox(
                     height: 20,
                   ),

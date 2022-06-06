@@ -2,6 +2,7 @@
 
 import 'package:cleon_mobile/api/api_services.dart';
 import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/views/shop/success.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -35,7 +36,7 @@ class _PembayaranState extends State<Pembayaran> {
       print(event.link.toString());
     });
 
-    print("init dynamic link");
+    print(widget.paket.id.runtimeType);
   }
 
   @override
@@ -168,6 +169,15 @@ class _PembayaranState extends State<Pembayaran> {
               ],
             ),
           ),
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Success(idPaket: widget.paket.id)));
+              },
+              child: Text("Success Page")),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.1,
@@ -204,7 +214,7 @@ class _PembayaranState extends State<Pembayaran> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

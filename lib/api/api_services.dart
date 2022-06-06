@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cleon_mobile/models/riwayat.dart';
+import 'package:cleon_mobile/models/transaksi.dart';
 import 'package:cleon_mobile/models/user.dart';
 import 'package:cleon_mobile/utils/constant.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -52,6 +53,23 @@ class ApiServices {
     }
   }
 
+  Future<String> pembayaran(String pembayaran, int harga) async {
+    late String result;
+    switch (pembayaran) {
+      case 'gopay':
+        result = await gopay(harga);
+        break;
+      case 'alfamart':
+        break;
+      case 'indomaret':
+        break;
+      default:
+        result = 'metode pembayaran tidak ada';
+    }
+
+    return result;
+  }
+
   Future<String> gopay(int harga) async {
     Map<String, dynamic> result;
     String? token = await getToken();
@@ -71,20 +89,14 @@ class ApiServices {
     return '';
   }
 
-  Future<String> pembayaran(String pembayaran, int harga) async {
-    late String result;
-    switch (pembayaran) {
-      case 'gopay':
-        result = await gopay(harga);
-        break;
-      case 'alfamart':
-        break;
-      case 'indomaret':
-        break;
-      default:
-        result = 'metode pembayaran tidak ada';
+  Future<Transaksi> requestPaket(int idPaket) async {
+    String? token = await getToken();
+    final response = await http.post(Uri.parse("$API/create-riwayat"),
+        headers: {'Authorization': 'Bearer $token'},
+        body: {'id_paket': idPaket});
+    if (response.statusCode != 200) {
+      throw Exception("invalid request");
     }
-
-    return result;
+    return Transaksi.fromJson(jsonDecode(response.body));
   }
 }
