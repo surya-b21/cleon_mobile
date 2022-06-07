@@ -53,11 +53,11 @@ class ApiServices {
     }
   }
 
-  Future<String> pembayaran(String pembayaran, int harga) async {
+  Future<String> pembayaran(String pembayaran, int harga, int idPaket) async {
     late String result;
     switch (pembayaran) {
       case 'gopay':
-        result = await gopay(harga);
+        result = await gopay(harga, idPaket);
         break;
       case 'alfamart':
         break;
@@ -70,10 +70,11 @@ class ApiServices {
     return result;
   }
 
-  Future<String> gopay(int harga) async {
+  Future<String> gopay(int harga, int idPaket) async {
     Map<String, dynamic> result;
     String? token = await getToken();
-    final response = await http.post(Uri.parse("$API/gopay?harga=$harga"),
+    final response = await http.post(
+        Uri.parse("$API/gopay?harga=$harga&id_paket=$idPaket"),
         headers: {'Authorization': 'Bearer $token'});
     result = jsonDecode(response.body);
 

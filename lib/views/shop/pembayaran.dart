@@ -33,10 +33,12 @@ class _PembayaranState extends State<Pembayaran> {
 
   void initDynamicLink() async {
     FirebaseDynamicLinks.instance.onLink.listen((event) {
-      print(event.link.toString());
-    });
+      var param = int.parse(event.link.queryParameters["id_paket"].toString());
+      Navigator.pop(context);
 
-    print(widget.paket.id.runtimeType);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Success(idPaket: param)));
+    });
   }
 
   @override
@@ -206,7 +208,8 @@ class _PembayaranState extends State<Pembayaran> {
                     EasyLoading.show(status: 'loading').then((_) async {
                       String result = await api.pembayaran(
                           _metodePembayaran.toString().split('.').last,
-                          widget.paket.harga + 1000);
+                          widget.paket.harga + 1000,
+                          widget.paket.id);
                       print(result);
                       EasyLoading.dismiss();
                     });

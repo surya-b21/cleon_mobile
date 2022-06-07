@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'dart:async';
 
@@ -20,18 +20,16 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   int _selectedIndex = 0;
-  bool isOffline = false;
+  var connectivityResult;
 
   @override
   void initState() {
     _connectivitySubscription = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        setState(() {
-          isOffline = true;
-        });
-      }
+      setState(() {
+        result = connectivityResult;
+      });
     });
     // ignore: todo
     // TODO: implement initState
@@ -54,6 +52,9 @@ class _AppState extends State<App> {
   }
 
   checkConnectivity() {
+    if (connectivityResult != ConnectivityResult.none) {
+      return null;
+    }
     return Fluttertoast.showToast(
         msg: "No Internet Found",
         toastLength: Toast.LENGTH_LONG,
