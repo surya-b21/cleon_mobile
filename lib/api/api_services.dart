@@ -53,24 +53,20 @@ class ApiServices {
     }
   }
 
-  Future<String> pembayaran(String pembayaran, int harga, int idPaket) async {
-    late String result;
+  Future<void> pembayaran(String pembayaran, int harga, int idPaket) async {
     switch (pembayaran) {
       case 'gopay':
-        result = await gopay(harga, idPaket);
+        await gopay(harga, idPaket);
         break;
-      case 'alfamart':
-        break;
-      case 'indomaret':
+      case 'qris':
+        await qris(harga, idPaket);
         break;
       default:
-        result = 'metode pembayaran tidak ada';
+        throw Exception("metode pembayaran tidak ada");
     }
-
-    return result;
   }
 
-  Future<String> gopay(int harga, int idPaket) async {
+  Future<void> gopay(int harga, int idPaket) async {
     Map<String, dynamic> result;
     String? token = await getToken();
     final response = await http.post(
@@ -86,6 +82,23 @@ class ApiServices {
       throw Exception("can't launch url");
     }
     return result['actions'][1]['url'];
+  }
+
+  Future<void> qris(int harga, int idPaket) async {
+    Map<String, dynamic> result;
+    String? token = await getToken();
+    final response = await http.post(
+        Uri.parse("$API/gopay?harga=$harga&id_paket=$idPaket"),
+        headers: {'Authorization': 'Bearer $token'});
+    result = jsonDecode(response.body);
+
+    if (result['status_code'] != "201") {
+      throw Exception("invalid response");
+    }
+    if (!await launchUrlString(result['actions'][0]['url'],
+        mode: LaunchMode.externalApplication)) {
+      throw Exception("can't show qr code");
+    }
   }
 
   Future<Transaksi> requestPaket(int idPaket) async {

@@ -16,7 +16,7 @@ class Pembayaran extends StatefulWidget {
   State<Pembayaran> createState() => _PembayaranState();
 }
 
-enum MetodePembayaran { gopay, indomaret, alfamart }
+enum MetodePembayaran { gopay, qris }
 
 class _PembayaranState extends State<Pembayaran> {
   final api = ApiServices();
@@ -80,7 +80,7 @@ class _PembayaranState extends State<Pembayaran> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 115),
+            padding: const EdgeInsets.only(bottom: 150),
             child: Column(
               children: [
                 Text(
@@ -126,39 +126,12 @@ class _PembayaranState extends State<Pembayaran> {
                           maxWidth: 40,
                           minHeight: 20,
                           minWidth: 20),
-                      child: Image.asset('assets/logo/alfamart.png'),
+                      child: Image.asset('assets/logo/qris.png'),
                     ),
-                    title: Text("Alfamart"),
+                    title: Text("QRIS"),
                     trailing: Radio<MetodePembayaran>(
                       activeColor: Color(0xff867EBA),
-                      value: MetodePembayaran.alfamart,
-                      groupValue: _metodePembayaran,
-                      onChanged: (MetodePembayaran? value) {
-                        setState(() {
-                          _metodePembayaran = value;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                Card(
-                  margin:
-                      EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 5),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: ListTile(
-                    leading: ConstrainedBox(
-                      constraints: BoxConstraints(
-                          maxHeight: 40,
-                          maxWidth: 40,
-                          minHeight: 20,
-                          minWidth: 20),
-                      child: Image.asset('assets/logo/indomaret.png'),
-                    ),
-                    title: Text("Indomaret"),
-                    trailing: Radio<MetodePembayaran>(
-                      activeColor: Color(0xff867EBA),
-                      value: MetodePembayaran.indomaret,
+                      value: MetodePembayaran.qris,
                       groupValue: _metodePembayaran,
                       onChanged: (MetodePembayaran? value) {
                         setState(() {
@@ -171,15 +144,6 @@ class _PembayaranState extends State<Pembayaran> {
               ],
             ),
           ),
-          // TextButton(
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   Success(idPaket: widget.paket.id)));
-          //     },
-          //     child: Text("Success Page")),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.1,
@@ -206,11 +170,10 @@ class _PembayaranState extends State<Pembayaran> {
                   onPressed: () {
                     // print(_metodePembayaran.toString().split('.').last);
                     EasyLoading.show(status: 'loading').then((_) async {
-                      String result = await api.pembayaran(
+                      await api.pembayaran(
                           _metodePembayaran.toString().split('.').last,
                           widget.paket.harga + 1000,
                           widget.paket.id);
-                      print(result);
                       EasyLoading.dismiss();
                     });
                   },
