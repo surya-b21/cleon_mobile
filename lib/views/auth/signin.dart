@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/google_login/google_login_bloc.dart';
 import 'package:cleon_mobile/bloc/login/login_bloc.dart';
 import 'package:cleon_mobile/cubit/dashboard/dashboard_cubit.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
@@ -14,25 +15,38 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
+          backgroundColor: Color(0xff2F2E41),
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () {
+                context.read<DashboardCubit>().back();
+              },
+              icon: Icon(Icons.arrow_back_ios_new_rounded)),
+        ),
         backgroundColor: Color(0xff2F2E41),
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              context.read<DashboardCubit>().back();
-            },
-            icon: Icon(Icons.arrow_back_ios_new_rounded)),
-      ),
-      backgroundColor: Color(0xff2F2E41),
-      body: BlocProvider<LoginBloc>(
-        create: (context) => LoginBloc(
-          userRepository: userRepository,
-          authBloc: BlocProvider.of<AuthBloc>(context),
-        ),
-        child: LoginForm(
-          userRepository: userRepository,
-        ),
-      ),
-    );
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<LoginBloc>(
+              create: (context) => LoginBloc(
+                  userRepository: userRepository,
+                  authBloc: BlocProvider.of<AuthBloc>(context)),
+            ),
+            BlocProvider<GoogleLoginBloc>(
+                create: (context) => GoogleLoginBloc(
+                    authBloc: BlocProvider.of<AuthBloc>(context)))
+          ],
+          child: LoginForm(userRepository: userRepository),
+        )
+        // BlocProvider<LoginBloc>(
+        //   create: (context) => LoginBloc(
+        //     userRepository: userRepository,
+        //     authBloc: BlocProvider.of<AuthBloc>(context),
+        //   ),
+        //   child: LoginForm(
+        //     userRepository: userRepository,
+        //   ),
+        // ),
+        );
   }
 }

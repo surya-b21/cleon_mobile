@@ -6,3 +6,15 @@ abstract class GoogleLoginEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GoogleButtonOnPressed extends GoogleLoginEvent {
+  final GoogleSignInAccount account;
+
+  const GoogleButtonOnPressed({required this.account});
+
+  @override
+  List<Object> get props => [account];
+
+  @override
+  String toString() => 'Google Account : $account';
+}
