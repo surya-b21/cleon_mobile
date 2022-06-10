@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cleon_mobile/api/google_signin_api.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:equatable/equatable.dart';
 
@@ -26,6 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<Logout>((event, emit) async {
       emit(AuthLoading());
       bool logout = await userRepository.logout();
+      await GoogleSignInApi.logout();
       if (logout) {
         emit(AuthUnauthenticated());
       }
