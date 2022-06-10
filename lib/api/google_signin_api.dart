@@ -16,16 +16,18 @@ class GoogleSignInApi {
   static Future logout() => _googleSignIn.disconnect();
 
   static Future<String> getToken(String? accessToken) async {
-    final response = await http.post(Uri.parse("$WEB/oauth/token"), body: {
-      "grant_type": "social",
-      "client_id": clientIdWeb,
-      "client_secret": clientSecret,
-      "provider": "google",
-      "access_token": accessToken
-    });
+    final response = await http.post(Uri.parse("$WEB/oauth/token"),
+        headers: {"content_type": "application/json"},
+        body: jsonEncode(<String, dynamic>{
+          "grant_type": "social",
+          "client_id": clientIdWeb,
+          "client_secret": clientSecret,
+          "provider": "google",
+          "access_token": accessToken
+        }));
 
     if (response.statusCode != 200) {
-      throw Exception("Invalid Request");
+      throw Exception(response.body);
     }
 
     Map<String, dynamic> result = jsonDecode(response.body);

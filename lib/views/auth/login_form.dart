@@ -5,7 +5,6 @@ import 'package:cleon_mobile/bloc/google_login/google_login_bloc.dart';
 import 'package:cleon_mobile/bloc/login/login_bloc.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
-import 'package:cleon_mobile/views/auth/googlesigned.dart';
 import 'package:cleon_mobile/views/auth/lupa_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,10 +26,6 @@ class _LoginFormState extends State<LoginForm> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  Future<void> handleSignIn() async {
-    final user = await GoogleSignInApi.login();
-  }
 
   snackBarMessage() {
     return SnackBar(
@@ -176,16 +171,9 @@ class _LoginFormState extends State<LoginForm> {
                         onPressed: () async {
                           final user = await GoogleSignInApi.login();
 
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => GoogleSigned(
-                                        user: user as GoogleSignInAccount,
-                                      )));
-
-                          // context.read<GoogleLoginBloc>().add(
-                          //     GoogleButtonOnPressed(
-                          //         account: user as GoogleSignInAccount));
+                          context.read<GoogleLoginBloc>().add(
+                              GoogleButtonOnPressed(
+                                  account: user as GoogleSignInAccount));
                         },
                         label: Text(
                           "Masuk dengan akun google",

@@ -14,24 +14,26 @@ class UserRepository {
 
   Future<String> register(String name, String email, String password,
       String password_confirmation) async {
-    final response = await http.post(Uri.parse('$API/register'), body: {
-      "name": name,
-      "email": email,
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "device_id": await getDeviceId()
-    });
+    final response = await http.post(Uri.parse('$API/register'),
+        body: jsonEncode(<String, dynamic>{
+          "name": name,
+          "email": email,
+          "password": password,
+          "password_confirmation": password_confirmation,
+          "device_id": await getDeviceId()
+        }));
 
     Map<String, dynamic> token = jsonDecode(response.body);
     return token['token'];
   }
 
   Future<String> login(String email, String password) async {
-    final response = await http.post(Uri.parse('$API/login'), body: {
-      "email": email,
-      "password": password,
-      "device_id": await getDeviceId()
-    });
+    final response = await http.post(Uri.parse('$API/login'),
+        body: jsonEncode(<String, dynamic>{
+          "email": email,
+          "password": password,
+          "device_id": await getDeviceId()
+        }));
 
     Map<String, dynamic> token = jsonDecode(response.body);
     // await storage.write(key: 'token', value: token['token']);
@@ -116,14 +118,13 @@ class UserRepository {
   Future<String> gantiPassword(String password, String password_confirmation,
       String password_lama) async {
     String? token = await storage.read(key: 'token');
-    final response =
-        await http.post(Uri.parse("$API/ganti-password"), headers: {
-      'Authorization': 'Bearer $token'
-    }, body: {
-      "password": password,
-      "password_confirmation": password_confirmation,
-      "password_lama": password_lama
-    });
+    final response = await http.post(Uri.parse("$API/ganti-password"),
+        headers: {'Authorization': 'Bearer $token'},
+        body: jsonEncode(<String, dynamic>{
+          "password": password,
+          "password_confirmation": password_confirmation,
+          "password_lama": password_lama
+        }));
 
     Map<String, dynamic> message = jsonDecode(response.body);
     if (response.statusCode == 200) {

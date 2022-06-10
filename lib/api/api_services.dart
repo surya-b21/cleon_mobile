@@ -105,7 +105,7 @@ class ApiServices {
     String? token = await getToken();
     final response = await http.post(Uri.parse("$API/create-riwayat"),
         headers: {'Authorization': 'Bearer $token'},
-        body: {"id_paket": idPaket.toString()});
+        body: jsonEncode(<String, dynamic>{"id_paket": idPaket}));
     if (response.statusCode != 201) {
       throw Exception("invalid request");
     }
