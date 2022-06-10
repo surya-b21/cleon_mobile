@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cleon_mobile/api/google_signin_api.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -26,8 +27,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<Logout>((event, emit) async {
       emit(AuthLoading());
+      final _storage = const FlutterSecureStorage();
+      if (await _storage.read(key: 'google-account') != null) {
+        await GoogleSignInApi.logout();
+      }
+
       bool logout = await userRepository.logout();
-      await GoogleSignInApi.logout();
       if (logout) {
         emit(AuthUnauthenticated());
       }

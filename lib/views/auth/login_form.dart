@@ -9,6 +9,7 @@ import 'package:cleon_mobile/views/auth/lupa_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../cubit/dashboard/dashboard_cubit.dart';
@@ -170,6 +171,9 @@ class _LoginFormState extends State<LoginForm> {
                         style: ElevatedButton.styleFrom(primary: Colors.white),
                         onPressed: () async {
                           final user = await GoogleSignInApi.login();
+                          final _storage = FlutterSecureStorage();
+                          await _storage.write(
+                              key: 'google-account', value: user.toString());
 
                           context.read<GoogleLoginBloc>().add(
                               GoogleButtonOnPressed(

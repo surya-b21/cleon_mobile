@@ -15,6 +15,7 @@ class UserRepository {
   Future<String> register(String name, String email, String password,
       String password_confirmation) async {
     final response = await http.post(Uri.parse('$API/register'),
+        headers: {"content_type": "application/json"},
         body: jsonEncode(<String, dynamic>{
           "name": name,
           "email": email,
@@ -29,11 +30,16 @@ class UserRepository {
 
   Future<String> login(String email, String password) async {
     final response = await http.post(Uri.parse('$API/login'),
+        headers: {"content_type": "application/json"},
         body: jsonEncode(<String, dynamic>{
           "email": email,
           "password": password,
           "device_id": await getDeviceId()
         }));
+
+    if (response.statusCode != 200) {
+      throw Exception(response.body);
+    }
 
     Map<String, dynamic> token = jsonDecode(response.body);
     // await storage.write(key: 'token', value: token['token']);
@@ -76,7 +82,6 @@ class UserRepository {
         headers: {'Authorization': 'Bearer $token'});
 
     if (response.statusCode == 200) {
-      await storage.delete(key: 'token');
       await storage.deleteAll();
       return true;
     }
@@ -119,7 +124,10 @@ class UserRepository {
       String password_lama) async {
     String? token = await storage.read(key: 'token');
     final response = await http.post(Uri.parse("$API/ganti-password"),
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {
+          'Authorization': 'Bearer $token',
+          "content_type": "application/json"
+        },
         body: jsonEncode(<String, dynamic>{
           "password": password,
           "password_confirmation": password_confirmation,

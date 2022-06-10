@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, unnecessary_getters_setters
 import 'dart:convert';
 
 import 'package:cleon_mobile/utils/constant.dart';
