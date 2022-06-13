@@ -15,7 +15,7 @@ class UserRepository {
   Future<String> register(String name, String email, String password,
       String password_confirmation) async {
     final response = await http.post(Uri.parse('$API/register'),
-        headers: {"content_type": "application/json"},
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
           "name": name,
           "email": email,
@@ -30,7 +30,7 @@ class UserRepository {
 
   Future<String> login(String email, String password) async {
     final response = await http.post(Uri.parse('$API/login'),
-        headers: {"content_type": "application/json"},
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
           "email": email,
           "password": password,
@@ -126,7 +126,7 @@ class UserRepository {
     final response = await http.post(Uri.parse("$API/ganti-password"),
         headers: {
           'Authorization': 'Bearer $token',
-          "content_type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
           "password": password,
