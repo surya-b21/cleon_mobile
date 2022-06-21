@@ -17,7 +17,7 @@ class GoogleSignInApi {
 
   static Future<String> getToken(String? accessToken) async {
     final response = await http.post(Uri.parse("$WEB/oauth/token"),
-        headers: {"content_type": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: jsonEncode(<String, dynamic>{
           "grant_type": "social",
           "client_id": clientIdWeb,

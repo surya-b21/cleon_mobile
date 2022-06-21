@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bloc/bloc.dart';
 import 'package:cleon_mobile/api/google_signin_api.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
@@ -27,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<Logout>((event, emit) async {
       emit(AuthLoading());
-      final _storage = const FlutterSecureStorage();
+      final _storage = FlutterSecureStorage();
       if (await _storage.read(key: 'google-account') != null) {
         await GoogleSignInApi.logout();
       }

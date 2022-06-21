@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
+import 'package:cleon_mobile/bloc/google_login/google_login_bloc.dart';
 import 'package:cleon_mobile/bloc/register/register_bloc.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/views/auth/register_form.dart';
@@ -26,10 +27,17 @@ class SignUp extends StatelessWidget {
             icon: Icon(Icons.arrow_back_ios_new_rounded)),
       ),
       backgroundColor: Color(0xff2F2E41),
-      body: BlocProvider<RegisterBloc>(
-        create: (context) => RegisterBloc(
-            authBloc: BlocProvider.of<AuthBloc>(context),
-            userRepository: userRepository),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<RegisterBloc>(
+            create: (context) => RegisterBloc(
+                userRepository: userRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context)),
+          ),
+          BlocProvider<GoogleLoginBloc>(
+              create: (context) =>
+                  GoogleLoginBloc(authBloc: BlocProvider.of<AuthBloc>(context)))
+        ],
         child: RegisterForm(userRepository: userRepository),
       ),
     );

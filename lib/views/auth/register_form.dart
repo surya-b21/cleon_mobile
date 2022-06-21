@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cleon_mobile/api/google_signin_api.dart';
+import 'package:cleon_mobile/bloc/google_login/google_login_bloc.dart';
 import 'package:cleon_mobile/bloc/register/register_bloc.dart';
 import 'package:cleon_mobile/cubit/dashboard/dashboard_cubit.dart';
 import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../utils/logo.dart';
 
@@ -235,13 +239,22 @@ class _RegisterFormState extends State<RegisterForm> {
                       height: 45,
                       child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(primary: Colors.white),
-                        onPressed: () {},
                         label: Text(
                           "Masuk dengan akun google",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         icon: FaIcon(FontAwesomeIcons.google,
                             color: Color(0xffdb3236)),
+                        onPressed: () async {
+                          final user = await GoogleSignInApi.login();
+                          final _storage = FlutterSecureStorage();
+                          await _storage.write(
+                              key: 'google-account', value: user.toString());
+
+                          context.read<GoogleLoginBloc>().add(
+                              GoogleButtonOnPressed(
+                                  account: user as GoogleSignInAccount));
+                        },
                       ),
                     ),
                   ),
