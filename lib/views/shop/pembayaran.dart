@@ -36,7 +36,7 @@ class _PembayaranState extends State<Pembayaran> {
       var param = int.parse(event.link.queryParameters["id_paket"].toString());
       Navigator.pop(context);
 
-      Navigator.push(context,
+      Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => Success(idPaket: param)));
     });
   }
