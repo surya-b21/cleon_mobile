@@ -27,7 +27,7 @@ class Dashboard extends StatelessWidget {
             return SignUp(userRepository: userRepository);
           } else {
             return Scaffold(
-              backgroundColor: Color(0xff2F2E41),
+              backgroundColor: Color(0xff2A2F4A),
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +75,7 @@ class Dashboard extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff2F2E41),
+                          primary: Color(0xff2A2F4A),
                           side: BorderSide(
                             width: 3,
                             color: Color(0xff867EBA),

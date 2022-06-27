@@ -11,7 +11,7 @@ class DetailRiwayat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff2F2E41),
+        backgroundColor: const Color(0xff2A2F4A),
         title: const Text("Detail Riwayat Transaksi"),
       ),
       backgroundColor: const Color(0xffdedede),
@@ -36,7 +36,7 @@ class DetailRiwayat extends StatelessWidget {
                 width: 80,
                 height: 50,
                 decoration: BoxDecoration(
-                    color: Color(0xff2F2E41),
+                    color: Color(0xff2A2F4A),
                     borderRadius: BorderRadius.circular(15)),
                 child: Image.asset('assets/logo/splashscreen.png'),
               ),

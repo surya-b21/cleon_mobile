@@ -18,7 +18,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2F2E41),
+        backgroundColor: Color(0xff2A2F4A),
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -26,7 +26,7 @@ class SignUp extends StatelessWidget {
             },
             icon: Icon(Icons.arrow_back_ios_new_rounded)),
       ),
-      backgroundColor: Color(0xff2F2E41),
+      backgroundColor: Color(0xff2A2F4A),
       body: MultiBlocProvider(
         providers: [
           BlocProvider<RegisterBloc>(

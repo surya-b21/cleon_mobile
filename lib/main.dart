@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
                     return EmailVerification();
                   }
                   return Scaffold(
-                    backgroundColor: Color(0xff2F2E41),
+                    backgroundColor: Color(0xff2A2F4A),
                     body: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +131,7 @@ class _MyAppState extends State<MyApp> {
             );
           }
           return Scaffold(
-            backgroundColor: Color(0xff2F2E41),
+            backgroundColor: Color(0xff2A2F4A),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

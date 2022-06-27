@@ -10,7 +10,7 @@ class Kontak extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Kontak"),
-        backgroundColor: Color(0xff2F2E41),
+        backgroundColor: Color(0xff2A2F4A),
       ),
       backgroundColor: Color(0xffdedede),
       body: Padding(

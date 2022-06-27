@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         preferredSize: Size.fromHeight(75),
         child: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xff2F2E41),
+          backgroundColor: Color(0xff2A2F4A),
           centerTitle: false,
           leading: Icon(Icons.person),
           titleSpacing: 1,

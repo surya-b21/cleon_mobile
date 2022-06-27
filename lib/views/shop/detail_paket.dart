@@ -22,7 +22,7 @@ class DetailPaket extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
-              color: Color(0xff2F2E41),
+              color: Color(0xff2A2F4A),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),

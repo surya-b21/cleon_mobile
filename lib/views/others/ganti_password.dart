@@ -21,7 +21,7 @@ class _GantiPasswordState extends State<GantiPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2F2E41),
+        backgroundColor: Color(0xff2A2F4A),
         title: Text("Ganti Password"),
       ),
       backgroundColor: Color(0xffdedede),
@@ -51,7 +51,7 @@ class _GantiPasswordState extends State<GantiPassword> {
                     border: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xff2F2E41)))),
+                        borderSide: BorderSide(color: Color(0xff2A2F4A)))),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'field tidak boleh kosong';
@@ -84,7 +84,7 @@ class _GantiPasswordState extends State<GantiPassword> {
                     border: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xff2F2E41)))),
+                        borderSide: BorderSide(color: Color(0xff2A2F4A)))),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'field tidak boleh kosong';
@@ -116,7 +116,7 @@ class _GantiPasswordState extends State<GantiPassword> {
                     border: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xff2F2E41)))),
+                        borderSide: BorderSide(color: Color(0xff2A2F4A)))),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'field tidak boleh kosong';
@@ -139,7 +139,7 @@ class _GantiPasswordState extends State<GantiPassword> {
               height: 45,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xff2F2E41),
+                  primary: Color(0xff2A2F4A),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -154,7 +154,7 @@ class _GantiPasswordState extends State<GantiPassword> {
                     setState(() {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(pesan),
-                        backgroundColor: Color(0xff2F2E41),
+                        backgroundColor: Color(0xff2A2F4A),
                       ));
                     });
                   }

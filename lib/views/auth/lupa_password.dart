@@ -21,7 +21,7 @@ class _LupaPasswordState extends State<LupaPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2F2E41),
+      backgroundColor: Color(0xff2A2F4A),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

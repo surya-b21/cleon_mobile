@@ -45,7 +45,7 @@ class _PembayaranState extends State<Pembayaran> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2F2E41),
+        backgroundColor: Color(0xff2A2F4A),
         centerTitle: true,
         title: Text('Pembayaran'),
       ),
