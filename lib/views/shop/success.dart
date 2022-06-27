@@ -31,7 +31,7 @@ class _SuccessState extends State<Success> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Pembayaran Sukses'),
-        backgroundColor: const Color(0xff2F2E41),
+        backgroundColor: const Color(0xff2A2F4A),
       ),
       backgroundColor: const Color(0xffdedede),
       body: Center(
