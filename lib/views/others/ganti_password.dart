@@ -157,6 +157,11 @@ class _GantiPasswordState extends State<GantiPassword> {
                         backgroundColor: Color(0xff2A2F4A),
                       ));
                     });
+                    if (pesan != 'Password lama salah') {
+                      Future.delayed(Duration(seconds: 3), () {
+                        Navigator.pop(context);
+                      });
+                    }
                   }
                 },
               ),
