@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/utils/constant.dart';
+import 'package:cleon_mobile/views/shop/detail_paket.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Ss extends StatefulWidget {
   const Ss({Key? key}) : super(key: key);
@@ -10,31 +15,58 @@ class Ss extends StatefulWidget {
 }
 
 class _SsState extends State<Ss> {
+  final api = ApiServices();
+  late Future<List<Paket>> futurePaket;
+  final currency = NumberFormat("#,###", "pt");
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    futurePaket = api.getPaket(jenisPaket['ss']);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Card(
-          margin: EdgeInsets.all(10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("SS 1 50 GB"),
-            subtitle: Text("Masa aktif 30 hari, 1.6 mpbs"),
-            trailing: Text("Rp 50.000"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(right: 10, left: 10, bottom: 5),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("SS 2 50 GB"),
-            subtitle: Text("Masa aktif 30 hari, 1.6 mpbs"),
-            trailing: Text("Rp 100.000"),
-          ),
-        ),
-      ],
-    );
+    return FutureBuilder<List<Paket>>(
+        future: futurePaket,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data![index];
+                  return Card(
+                    margin: EdgeInsets.only(
+                        top: 10, right: 10, left: 10, bottom: 5),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: ListTile(
+                        title: Text(data.nama),
+                        subtitle: Text(data.keterangan),
+                        trailing: Text("Rp. ${currency.format(data.harga)}"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailPaket(paket: data)));
+                        },
+                      ),
+                    ),
+                  );
+                });
+          } else {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(color: Color(0xff867EBA)),
+              ),
+            );
+          }
+        });
   }
 }

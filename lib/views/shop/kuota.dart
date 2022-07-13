@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/models/paket.dart';
+import 'package:cleon_mobile/utils/constant.dart';
+import 'package:cleon_mobile/views/shop/detail_paket.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Kuota extends StatefulWidget {
   const Kuota({Key? key}) : super(key: key);
@@ -10,119 +15,55 @@ class Kuota extends StatefulWidget {
 }
 
 class _KuotaState extends State<Kuota> {
-  final List<dynamic> wireless = [
-    ["5K", 5, "5.000", 5],
-    ["10K", 10, "10.000", 10],
-    ["20K", 20, "20.000", 15],
-    ["30K", 30, "30.000", 20],
-    ["40K", 40, "40.000", 30]
-  ];
-
-  final List<dynamic> optik = [
-    ["5K", 10, "5.000", 7],
-    ["10K", 20, "10.000", 14],
-    ["20K", 50, "20.000", 21]
-  ];
+  final api = ApiServices();
+  late Future<List<Paket>> futurePaket;
+  final currency = NumberFormat("#,###", "pt");
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    futurePaket = api.getPaket(jenisPaket['kuota']);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: 10, left: 10, bottom: 5),
-          child: Text(
-            "Wireless",
-            style: TextStyle(fontSize: 15, color: Colors.black54),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA ${wireless[0][0]} ${wireless[0][1]}GB"),
-            subtitle: Text("Masa aktif ${wireless[0][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${wireless[0][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA ${wireless[1][0]} ${wireless[1][1]}GB"),
-            subtitle: Text("Masa aktif ${wireless[1][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${wireless[1][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA ${wireless[2][0]} ${wireless[2][1]}GB"),
-            subtitle: Text("Masa aktif ${wireless[2][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${wireless[2][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA ${wireless[3][0]} ${wireless[3][1]}GB"),
-            subtitle: Text("Masa aktif ${wireless[3][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${wireless[3][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA ${wireless[4][0]} ${wireless[4][1]}GB"),
-            subtitle: Text("Masa aktif ${wireless[4][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${wireless[4][2]}"),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 10, left: 10, bottom: 5),
-          child: Text(
-            "Optik",
-            style: TextStyle(fontSize: 15, color: Colors.black54),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA FO ${optik[0][0]} ${optik[0][1]}GB"),
-            subtitle: Text("Masa aktif ${optik[0][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${optik[0][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA FO ${optik[1][0]} ${optik[1][1]}GB"),
-            subtitle: Text("Masa aktif ${optik[1][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${optik[1][2]}"),
-          ),
-        ),
-        Card(
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: ListTile(
-            title: Text("KUOTA FO ${optik[2][0]} ${optik[2][1]}GB"),
-            subtitle: Text("Masa aktif ${optik[2][3]} hari, 2.5 mpbs"),
-            trailing: Text("Rp ${optik[2][2]}"),
-          ),
-        ),
-      ],
-    );
+    return FutureBuilder<List<Paket>>(
+        future: futurePaket,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data![index];
+                  return Card(
+                    margin: EdgeInsets.only(
+                        top: 10, right: 10, left: 10, bottom: 5),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: ListTile(
+                      title: Text(data.nama),
+                      subtitle: Text(data.keterangan),
+                      trailing: Text("Rp. ${currency.format(data.harga)}"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailPaket(paket: data)));
+                      },
+                    ),
+                  );
+                });
+          } else {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(color: Color(0xff867EBA)),
+              ),
+            );
+          }
+        });
   }
 }

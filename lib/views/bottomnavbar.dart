@@ -20,15 +20,15 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-            backgroundColor: Color(0xff2F2E41)),
+            backgroundColor: Color(0xff2A2F4A)),
         BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Beli Paket",
-            backgroundColor: Color(0xff2F2E41)),
+            backgroundColor: Color(0xff2A2F4A)),
         BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: "Lainnya",
-            backgroundColor: Color(0xff2F2E41))
+            backgroundColor: Color(0xff2A2F4A))
       ],
     );
   }

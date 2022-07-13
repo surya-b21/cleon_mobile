@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cleon_mobile/repositories/user_repositories.dart';
+import 'package:cleon_mobile/api/user_repositories.dart';
 import 'package:cleon_mobile/utils/logo.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class _LupaPasswordState extends State<LupaPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2F2E41),
+      backgroundColor: Color(0xff2A2F4A),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

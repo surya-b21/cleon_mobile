@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "1071653908052",
+    "project_id": "cleon-mobile-deep-link",
+    "storage_bucket": "cleon-mobile-deep-link.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071653908052:android:4bff4e8ddecb997aa947c1",
+        "android_client_info": {
+          "package_name": "com.lifemedia.cleon.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071653908052-4j0rmi8pfj5djfsb05rkjqna9tuqpe3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lifemedia.cleon.mobile",
+            "certificate_hash": "3adb786f6c2e82fb44bfb802145271b916ca41f1"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1s_-s5sTt1DBtkbspwEoeuveuWQvQzMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

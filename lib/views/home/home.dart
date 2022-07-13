@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:cleon_mobile/views/home/detail.dart';
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/models/riwayat.dart';
+import 'package:cleon_mobile/models/user.dart';
+import 'package:cleon_mobile/views/home/detail_riwayat.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,7 +15,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List paket = List<String>.generate(15, (index) => "Paket SS ${index + 1} GB");
+  late Future<User> futureUser;
+  late Future<List<Riwayat>> futureRiwayat;
+  final api = ApiServices();
+
+  @override
+  void initState() {
+    // ignore: todo
+    super.initState();
+    futureUser = api.getUser();
+    futureRiwayat = api.getRiwayat();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +34,7 @@ class _HomeState extends State<Home> {
         preferredSize: Size.fromHeight(75),
         child: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xff2F2E41),
+          backgroundColor: Color(0xff2A2F4A),
           centerTitle: false,
           leading: Icon(Icons.person),
           titleSpacing: 1,
@@ -28,19 +42,29 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15))),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "hi, Mas Joni",
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                "joni@gmail.com",
-                style: TextStyle(fontSize: 14),
-              ),
-            ],
-          ),
+          title: FutureBuilder<User>(
+              future: futureUser,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "hi, " + snapshot.data!.name,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        snapshot.data!.email,
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  );
+                } else {
+                  return CupertinoActivityIndicator(
+                    color: Colors.white,
+                  );
+                }
+              }),
         ),
       ),
       backgroundColor: Color(0xffdedede),
@@ -55,22 +79,51 @@ class _HomeState extends State<Home> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: paket.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: ListTile(
-                      title: Text(paket[index]),
-                      trailing: Text('29/01/2022'),
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Detail()));
-                      },
-                    ),
-                  );
+            child: FutureBuilder<List<Riwayat>>(
+                future: futureRiwayat,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          var data = snapshot.data![index];
+                          return Card(
+                              margin: EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: ListTile(
+                                title: Text(data.nama),
+                                trailing: Text(data.createdAt.day.toString() +
+                                    "/" +
+                                    data.createdAt.month.toString() +
+                                    "/" +
+                                    data.createdAt.year.toString()),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => DetailRiwayat(
+                                                riwayat: data,
+                                              )));
+                                },
+                              ));
+                        });
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Center(
+                        child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child:
+                          CircularProgressIndicator(color: Color(0xff867EBA)),
+                    ));
+                  } else {
+                    return Center(
+                      child: Text("Anda belum melakukan transaksi"),
+                    );
+                  }
                 }),
           )
         ],

@@ -1,4 +1,4 @@
-import 'package:cleon_mobile/bloc/shop_bloc.dart';
+import 'package:cleon_mobile/bloc/shop/shop_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +33,6 @@ class _ShopState extends State<Shop> {
       body: BlocProvider<ShopBloc>(
         create: (context) => ShopBloc(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,

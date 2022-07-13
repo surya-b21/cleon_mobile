@@ -1,11 +1,30 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:cleon_mobile/bloc/auth_bloc.dart';
+import 'package:cleon_mobile/api/api_services.dart';
+import 'package:cleon_mobile/bloc/auth/auth_bloc.dart';
+import 'package:cleon_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
-class Others extends StatelessWidget {
+class Others extends StatefulWidget {
   const Others({Key? key}) : super(key: key);
+
+  @override
+  State<Others> createState() => _OthersState();
+}
+
+class _OthersState extends State<Others> {
+  late Future<User> futureUser;
+  final api = ApiServices();
+
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    futureUser = api.getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +53,32 @@ class Others extends StatelessWidget {
                     "Nama",
                     style: TextStyle(fontSize: 10, color: Color(0xff6B6A6A)),
                   ),
-                  Text("Mas Joni")
+                  FutureBuilder<User>(
+                      future: futureUser,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(snapshot.data!.name);
+                        } else {
+                          return Shimmer(
+                            gradient: LinearGradient(stops: [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
+                          );
+                        }
+                      }),
                 ],
               ),
             ),
@@ -52,7 +96,32 @@ class Others extends StatelessWidget {
                     "Email",
                     style: TextStyle(fontSize: 10, color: Color(0xff6B6A6A)),
                   ),
-                  Text("masjoni@gmail.com")
+                  FutureBuilder<User>(
+                      future: futureUser,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(snapshot.data!.email);
+                        } else {
+                          return Shimmer(
+                            gradient: LinearGradient(stops: [
+                              0.4,
+                              0.5,
+                              0.6
+                            ], colors: [
+                              Colors.black.withOpacity(0.25),
+                              Colors.white.withOpacity(0.5),
+                              Colors.black.withOpacity(0.25)
+                            ]),
+                            child: Container(
+                              height: 20,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.black.withOpacity(0.25)),
+                            ),
+                          );
+                        }
+                      }),
                 ],
               ),
             ),
@@ -65,6 +134,9 @@ class Others extends StatelessWidget {
               leading: Icon(Icons.password),
               title: Text("Ubah Kata Sandi"),
               subtitle: Text("Ubah kata sandi anda dengan kata sandi baru"),
+              onTap: () {
+                Navigator.pushNamed(context, '/ganti-password');
+              },
             ),
           ),
           Card(
