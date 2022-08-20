@@ -15,38 +15,29 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff2A2F4A),
-          elevation: 0,
-          leading: IconButton(
-              onPressed: () {
-                context.read<DashboardCubit>().back();
-              },
-              icon: Icon(Icons.arrow_back_ios_new_rounded)),
-        ),
+      appBar: AppBar(
         backgroundColor: Color(0xff2A2F4A),
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<LoginBloc>(
-              create: (context) => LoginBloc(
-                  userRepository: userRepository,
-                  authBloc: BlocProvider.of<AuthBloc>(context)),
-            ),
-            BlocProvider<GoogleLoginBloc>(
-                create: (context) => GoogleLoginBloc(
-                    authBloc: BlocProvider.of<AuthBloc>(context)))
-          ],
-          child: LoginForm(userRepository: userRepository),
-        )
-        // BlocProvider<LoginBloc>(
-        //   create: (context) => LoginBloc(
-        //     userRepository: userRepository,
-        //     authBloc: BlocProvider.of<AuthBloc>(context),
-        //   ),
-        //   child: LoginForm(
-        //     userRepository: userRepository,
-        //   ),
-        // ),
-        );
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              context.read<DashboardCubit>().back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_rounded)),
+      ),
+      backgroundColor: Color(0xff2A2F4A),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<LoginBloc>(
+            create: (context) => LoginBloc(
+                userRepository: userRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context)),
+          ),
+          BlocProvider<GoogleLoginBloc>(
+              create: (context) =>
+                  GoogleLoginBloc(authBloc: BlocProvider.of<AuthBloc>(context)))
+        ],
+        child: LoginForm(userRepository: userRepository),
+      ),
+    );
   }
 }
