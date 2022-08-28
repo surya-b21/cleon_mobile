@@ -34,34 +34,30 @@ class _ShopState extends State<Shop> {
         create: (context) => ShopBloc(),
         child: Column(
           children: [
-            Flexible(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 55,
-                child: Expanded(
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: jenisPaket.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xff867EBA),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                            ),
-                            onPressed: () {
-                              context.read<ShopBloc>().add(listEvent[index]);
-                            },
-                            child: Text(jenisPaket[index]),
-                          ),
-                        );
-                      }),
-                ),
-              ),
+            Expanded(
+              flex: 1,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: jenisPaket.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff867EBA),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                        ),
+                        onPressed: () {
+                          context.read<ShopBloc>().add(listEvent[index]);
+                        },
+                        child: Text(jenisPaket[index]),
+                      ),
+                    );
+                  }),
             ),
             Expanded(
+              flex: 10,
               child: BlocBuilder<ShopBloc, ShopState>(
                 builder: (context, state) {
                   return state.currentWidget;
