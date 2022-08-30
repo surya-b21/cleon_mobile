@@ -38,9 +38,11 @@ class _ShopState extends State<Shop> {
               width: MediaQuery.of(context).size.width,
               height: 55,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
+                  Flexible(
                     child: ListView.builder(
+                        shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: jenisPaket.length,
                         itemBuilder: (context, index) {
